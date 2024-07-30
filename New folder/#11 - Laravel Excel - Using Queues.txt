@@ -1,0 +1,87 @@
+whenever we are working with a lot of
+data it is not an efficient way to make
+the user wait for the response from the
+server you can imagine it is taking a
+few seconds just to generate an export
+of 100 users so if we have like thousand
+or millions of record inside our
+database it would take longer to respond
+to the user
+request with qes we won't be sending
+back the export file as a response but
+put some message to indicate something
+like the export has
+started once the file will be generated
+we would store it inside the storage
+local or S3 whichever that is being used
+and the user will then be able to
+download that
+file now back in our code it is very
+easy to implement cues for our
+export we can do it by two different
+ways one would be to call the Q method
+inside of a controller which is also
+referred to as and explicit queuing the
+other is by implementing the shoot queue
+interface in our export class and also
+called implicit queing I prefer the
+implicit way so that we don't have to
+manually export our report every time we
+use it in different controllers or
+different method so inside our export
+class let's just implement this
+interface should q and we need to use a
+trade called use cable now inside of our
+controller we just need to Define where
+we want to store this file and what name
+should it have we can use the store
+method on the export instance to achieve
+this now one last thing that we need to
+do in order to make this queue work is
+to go into our environment file and
+change the queue connection to redice
+instead of syn and make sure the redis
+is installed on your system now all we
+need to do is go to our terminal and run
+the command PHP Artisan Q
+work this will start the queue
+process and now if we go to our browser
+and hit the endpoint of/ export we can
+see our return message and the queue
+will start to generate the
+
+export once the export is finished we
+can go to our project folder and inside
+the storage app folder we can see this
+file named users.
+excl so that is how we can use Q
+now I would like to add a couple more
+things here let's say after generating
+an export we want to run a job that
+would notify some user that the export
+has
+finished and we can use a method named
+chin inside our controller and this meod
+takes an array of jobs all we need to do
+is Define a job or create a job and then
+pass the instance of the job inside this
+array each job that we add here will be
+added to the queue and will be executed
+in the same order because of the FIFA
+principle first in first out the last
+thing I want to talk about shortly is on
+how you can handle the errors in your
+cued export for this inside our export
+class you can define a method name field
+which takes in a parameter of throwable
+exception and whenever an error occur
+inside your export this method will be
+fire you can do whatever you want like
+create a log entry inside your database
+or maybe show the error in a log file
+specific to export or whatever you want
+to do and that also bring us to the end
+of the video please like the video and
+subscribe to the channel in case you
+find it
+helpful

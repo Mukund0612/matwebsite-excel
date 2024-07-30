@@ -1,0 +1,193 @@
+in this video let's work on customizing
+our export columns for cells
+let's first take a look at what is
+exported currently
+so inside this file ask yourself what is
+the first thing that you see that isn't
+looking fine
+the column switch right we can see that
+the columns are either overlapping or
+the text inside them isn't showing
+properly that is the first thing we
+would like to fix or improve so for this
+let's go to our export file
+and here we are going to use an
+interface that will Auto resize our
+cells and the interface is called should
+Auto size
+implementing this interface we don't
+have to overwrite any method but it will
+automatically resize ourselves to the
+value inside of it
+so now let's try and see our export
+result
+we can now see that each column has
+adjusted automatically and everything
+looks visually appealing
+next I would like to show you how you
+can customize the width of the columns
+manually
+for example you may want to assign
+different reads to different cells some
+may need more space While others can
+adjust in lesser space for this let's go
+to code and the first thing I'm going to
+do is remove should Auto size
+and now we have an interface named with
+column width let's Implement that
+and this interface has one method which
+we need to overwrite so let's copy paste
+that here
+and it expects us to return an array
+so written array now this array will
+contain the width defined for each of
+the column as a numeric value so you can
+adjust it according to your need
+so here let's define the width of column
+B to be 55 and the column B refers to
+the nodes column so now let's see the
+difference in our export file
+and this is how the file looks like you
+may not notice the difference but this
+is what we have on our new export and
+this is what we had previously so you
+can see that the width has been reduced
+however we can see one more thing that
+the other columns are now not Auto
+resizing themselves
+so the status column is stating rest
+space and the icon is taking more space
+we can also use this interface along
+with the order size one
+so that way we will be only overriding
+the bit defined for the cells and the
+rest of the cells will be automatically
+resized for us let's go into our code
+and implement
+pseudoro size so now let's give it a
+shot in browser and this is the result
+so we have the ID column reassigned
+and this is the result so we can see our
+ID column is taking that space as
+required and Status column is also
+taking up the space it needs and
+everything looks good
+that was about the widgets now it's time
+we start ourselves and rules if you look
+at our export it is hard to
+differentiate between the header row and
+the other data
+so what we are going to do is style our
+header row to look a little bit
+different from other rows maybe have the
+font size increase or maybe the font
+weight should be bold so for this we are
+going to be implementing a new interface
+name with style and by the name of it
+you can guess it will allow us to style
+our sheet so let's Implement that
+
+and now we have the override one method
+which is called styles
+we also need to include the worksheet so
+worksheet slash worksheet this method
+takes in a parameter of sheet so the
+reason for having a parameter here is
+because we have two ways of defining the
+Styles the first one is a simple one
+like we have been using and returning an
+array of styles while the other one is a
+bit PHP style way PHP syntax play and I
+will show you both in a minute we may
+also need to access some properties of
+the current Shield so we can use this
+parameter to access that first let's go
+with the array syntax and make our
+header row bold since our sheet rows are
+based on number and cells are
+represented by alphabet I will be
+studying the first row and I will make
+it to half fold as both with the Styles
+added let's take a look at our export
+now and here we can see that our first
+row is down bold now we can achieve the
+same styling using the second approach
+and for that let's comment the array
+part and I will be using this sheet
+parameter to style our headed row so
+what I'm doing is I'm using the current
+sheet I'm getting the style of the first
+row I'm getting the font properly on it
+and setting the ball as true so now
+let's hit the browser again and see our
+result and we can still see that our
+header row is bold
+now that we are talking about Styles and
+in case we want to style entire sheet
+that includes all the cells and rows we
+can Define generic styles with this and
+the interface named with default Styles
+though these default Styles interface is
+only available after the 3.4.1 version
+of lateral XL and it won't work for the
+previous version
+and this interface has one method which
+we need to overwrite and it returns an
+array or nothing and the reason to and
+the reason for void here is because we
+have the styling parameter and we could
+be installing the sheet using this
+parameter and not returning anything so
+let's override this method in our export
+file so now I have defined the method
+and inside what I've done is I've kept
+the phone as calibri which is by default
+calibri and I have increased the size
+from 11 to 12. I've also changed the
+alignment of the values so each cell is
+now going to have the value at the
+center of it both horizontally and
+vertically like I have mentioned before
+the default Styles only work if you have
+installed version
+3.4.1 or newer version
+and since we have the version 3.1 we
+won't be able to export the report with
+default size also for styling we are
+using different syntax than the regular
+CSS and I will leave a link in the
+description or at the top of the video
+where you can find all the details and
+styles you can use here
+so the last thing I want to talk about
+is the text wrapping so if we go to our
+export we can look at our B cell and we
+can see that the text is not splitting
+into the next line
+but if we increase the weight of the
+column then we can see the entire text
+but that is not what we would want
+normally if I click on wrap text you can
+see that the text is splitting in the
+next line so how can we achieve this so
+inside the code inside our Styles I'm
+going to add a new line what I'm
+basically doing here is I'm grabbing the
+entire column of B and I'm just setting
+the wrap text to true the method get
+highest row is going to return me the
+highest row number so it is going to be
+the last row number which is 93 or 94
+actually and let's try it out in the
+browser and see the result and now we
+can see that our text is getting wrapped
+and we can see the entire text splitting
+that is all about this video and
+probably for the series there might be
+one or two more videos but until now
+with what we have learned we can now
+create an Excel file with multiple
+sheets inside and customize the columns
+according to our name
+thank you for watching and I will see
+you in the next video

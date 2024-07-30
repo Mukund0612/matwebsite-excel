@@ -1,0 +1,66 @@
+we just saw that with from view
+interface we can include the header row
+but with the other ways of exporting the
+header row or headings or missing
+first I'm going to clean the export file
+and have the class Implement form array
+interface because most of the time you
+will either be working with array of
+data or collections
+also we need to revert the data to users
+data instead of the orders and one more
+thing I would like to do is to hide all
+the timestamps in the model
+so now in order to have headings roll we
+need to implement another interface call
+with headings
+this interface has one method name
+headings which we must Define and it
+returns an array where each element of
+the array is a heading for each of the
+column in our Excel file
+so let's define an array of headings and
+give it a shot in the browser
+in case we need more than one heading
+row we can also do that for this we will
+be returning arrays of array where each
+internal array would be representing
+each row so now let's define two
+internal arrays which will be which
+means that we will be defining two rows
+of headings and then we will have our
+data
+as you can see that is working quite
+nicely
+one more thing that I would like to
+share is that you might be wondering
+that we are defining static headings and
+what if we have multiple exports of same
+model and it has quite a lot of columns
+or attributes this is not something that
+has to do anything with the package but
+just an opinion on how you can reduce
+the duplication of code
+so in that case you can define a
+constant array in your model where you
+will map each attribute or database
+column with a more user-friendly name
+and then you can grab the keys of the
+data inside the export class and then
+return that custom field name
+it is just an option on how you can do
+it but I hope you get the idea on how
+you can map each database column with a
+better heading because we don't want to
+have column headings with underscore or
+special characters like we do in our
+database talking about mapping one
+problem that you might be thinking about
+is that right now we are just getting
+the data and then creating the headings
+based off how the data is exported and
+which column is first and which is last
+let's now have a look on how we can map
+columns the way we want which column
+should be coming first and which should
+be last

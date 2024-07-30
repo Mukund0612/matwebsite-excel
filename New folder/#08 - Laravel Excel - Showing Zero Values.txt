@@ -1,0 +1,54 @@
+before going towards having multiple
+sheets and customization of each cell I
+would like to show you a very simple
+issue you might face when using the
+route EXO for the first time it may not
+be a issue but if you are working with
+integers and you want numbers this might
+be an issue so for this I'm going to add
+a new column first inside the headings
+function I'm going to add a new heading
+failed others count and inside the map
+method I'm going to append a new value
+so order
+where the status is failed
+and I only want the orders that are
+failed for this specific user so where
+user ID is equal to the current row ID
+
+and I'm gonna get the count of this
+all right now let's go to the browser
+hit reload so our file has been
+generated now let's take a look at our
+file
+inside our export file we have a column
+for the field owners count and we can
+see the count of the orders that have
+failed but right at the top the second
+row we have an empty cell which wasn't
+supposed to be an empty cell but zero
+because there are no failed order for
+this user so by default what happens is
+Laurel Excel Compares only the value of
+the cells or columns and not the type of
+the value so here 0 is equal to empty
+string and in order to verify this you
+can simply go to your browser open the
+inspect and type in 0 equals equals
+empty string and you can see the result
+is two but if you compare both the value
+and the type then it is false so in
+order to overcome this lateral Excel
+provides us an interface called with
+string null comparison so let's
+Implement that interface
+at the top I'm gonna write with strict
+null comparison
+and now let's hit reload and now inside
+we can see our zero is back so it's not
+showing the empty string that is just
+one simple customization of the columns
+but we will see many more of these after
+the multiple sheets Explorer so now
+let's export an Excel file with multiple
+sheets

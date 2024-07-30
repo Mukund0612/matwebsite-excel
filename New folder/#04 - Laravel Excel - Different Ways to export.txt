@@ -1,0 +1,79 @@
+so we had our first explorer and you can
+see it's pretty easy right now we are
+exporting using collection while
+retrieving the data from database but in
+some cases we won't be exporting the
+exact data that we have in the DB so
+what we can do is to create the data for
+the export inside our controller and
+then pass it to our Excel file so for
+that let's create a controller name
+exports controller and inside I'm going
+to Define only one method called export
+now inside this method let's retrieve
+the data from the DB and pass it along
+to the Excel file as a Constructor
+parameters and now we can store this
+data as a property of this class
+
+so we have already seen the collection
+Explorer we can also create an export
+file from an array for that we only need
+to implement another interface that is
+provided by lateral Excel called from
+array
+and now instead of collection method we
+need to add a method name array which
+will return an array of data
+and now we can simply export like
+previously we were doing with the
+collection
+another way to export is write the query
+inside the export file for this we will
+simply Implement another interface from
+query and as you might have guessed it
+it will allow us to write the query
+inside the Excel file this interface
+requires only one method to be defined
+named query for this let's now not use
+the users table instead let's write a
+query now to retrieve orders that has an
+amount of over 50. I know this is a user
+export class and for others we should
+have a newer export class but for now I
+just want to give you an example on how
+you can export using this interface now
+let's go to the browser and hit our
+endpoint
+we can see our export file has orders
+with an amount of Above 50. This Way of
+exporting has one benefit that it will
+execute the query in chunks so if you
+want to export a large amount of data
+this is also a good option just make
+sure you don't return the result of the
+query by using get or pagination
+because that way the chunks won't work
+one last way to export is by using blade
+files in this way you can create a blade
+file with HTML table element and use it
+to create an export for this we have a
+from view interface and a matter name
+view I've also created a blade file
+named order inside the resources view
+folder and inside I have defined a
+simple HTML table structure with header
+and three columns
+let's pass the data to this view file
+and for the data I have changed it
+inside the controller to retrieve all
+the orders instead of the users
+so now let's go to the browser and
+download the Excel file and we can see
+the data is structured in the way we
+have defined the table in our blade file
+also you can notice one thing that now
+we have the headings row at the top
+which were missing previously now let's
+see how we can have headings with
+exports generated without the blade View

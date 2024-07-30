@@ -1,0 +1,168 @@
+welcome back to the part two of imports
+in the last video I showed you some
+basing things you can do with your
+Imports today I want to show you more
+but in case you haven't watched the
+previous one I would say have a look at
+that one first and then come back to
+this video I will add the link in the
+description okay so I did show you 2xo
+file at the start of the previous video
+and we have worked with the first file
+up till now first let's take a look at
+the other file again and let's talk
+about how we are going to import it also
+I have added another column for the
+items so it will represent the order
+item and here you can see that I have
+two sheets inside this Excel file each
+for a user and inside each sheet we have
+orders for that specific user okay so
+now how can we import this type of file
+so we can see that we have the header
+row as well and we have multiple sheets
+for this first we need to implement with
+multiple sheets concern and and then all
+we need to do is Define a sheets method
+so for this I'm going to first create a
+new import file called user order
+Imports and then we will add the sheets
+concern and the method inside that file
+so I'm going to just run the command
+phbm make import to create an Excel file
+for our Imports and I'm going to name it
+user orders import now inside our code
+we need to go to this file and instead
+of collection I'm just going to
+implement with multiple
+sheets and here I'm going to define a
+method called sheets now inside this
+method we will just written an array
+which will contain instances of our
+sheets inside the Excel file right now
+we don't have the Excel file for
+representing a sheet so we need to
+create that one now the basic idea is if
+we have different formats in each of the
+sheet then we would be creating multiple
+sheet Imports or multiple Excel files
+for each of the format but in our case
+both the sheets have the same format of
+data so we just need to create only one
+file so let's create that one I will go
+back to my terminal and run the same
+command and this time I'm going to name
+my file as aors import so here inside
+the array I'm going to return orders
+import and that's all so now inside our
+orders import file the first thing I'm
+going to change is to change the two
+collection to two model actually because
+we will be cre creting an order instance
+Here and Now inside the first thing we
+need to do is to get the sheet name
+because that represents our users inside
+the database and we will add this record
+against those specific users so in order
+to get the sheet name we will be
+registering a before sheet even and then
+get the sheet name so now we are going
+to check if there is any user for this
+name and then add the ERS data otherwise
+we are going to skip the data and move
+to the next sheet so let me explain what
+I'm doing here first I'm looking for
+this specific user the sheet name is
+representing a single user so we are
+looking for that user data inside our
+data P if there is no user for such name
+then we are going to skip this row next
+what I'm doing here is I'm just creating
+a new order and associating the user
+with it in the last what I'm doing here
+is I'm just adding the order items for
+each of the order so now we have
+everything in place let's go to our
+controller and instead of this I'm just
+going to comment this one out and add
+this line here the name of the file is
+users import 2 and instead of user
+import I'm going to
+be using orders import file now the last
+thing we need to do is go into our
+orders import and use the trade
+importables so we have everything in
+place now let's go to the browser and
+try it
+out so we didn't get any error now now
+we will go to our database and see the
+result so we can see that there are data
+that have been inserted into our
+database I did run this import earlier
+so that's why I have more data than we
+have in the Excel file we can also go to
+our order items and see that each of the
+order items has been added as well now
+that was about multiple sheets and how
+to import them but now I want to talk
+about a problem that you may face while
+importing and that is about the
+insertion cues that will be executed so
+from what we have right now if we are
+importing this way we are executing a
+cury for each of the row now you can
+imagine if we have a bigger data in here
+let's say even 20,000 then we are
+executing 20,000 cues and as a result we
+may face bottleneck so what we can do to
+prevent that is by inserting the data as
+a badge and we can easily do that by
+implementing a concern called with batch
+inserts we will have to define the math
+batch size as well that will return the
+size of of the batch and this way we are
+reducing a lot of queries execution so
+for this we need to go into our orders
+import where we
+are implementing two model concern and
+have the model method we just need to
+add another concern here with batch
+inserts and we also need to define the
+meod batch size which is going to be an
+integer and we can specify the number of
+rows that needs to be inserted at a time
+so let's say we can say 5,000 or even 50
+for now the only thing that you should
+be aware of is that this concern only
+works if you're implementing the two
+model as well so if we are not using the
+two model then this won't work now that
+we are talking about optimizations
+another problem we can face with the
+large import file is the memory usage we
+can Implement a concern for that as well
+with chunk reading and Implement a
+method named chunk size so what we need
+to do is add with junk reading and we
+need to define the M chunk size so we
+can Define the size of this chunk and we
+can use this chunk size along with the
+bad size in order to import efficiently
+one last small thing I want to talk
+about is the progress bar so let's say
+instead of the route we are importing wi
+the command line and we want to show the
+progress of the import on the terminal
+LEL XEL provide us another concern
+called withd progress bar and with this
+implemented inside the command we just
+need to use the with method and it will
+show the progress in the terminal this
+also brings us to the end of the video
+and this larel series as well I hope it
+was helpful and you learn at least
+something from here in case you find it
+helpful please like the video and share
+with the others so they can also get
+benefit from this thank you for watching
+and I will see you in the next one

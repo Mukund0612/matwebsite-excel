@@ -1,0 +1,123 @@
+in this video let's talk about how we
+can have multiple sheets inside our
+export
+for this we will be exporting a file
+that will have sheet for each user and
+inside each of the sheet we will have
+all the orders history for that specific
+user
+so we can simply think of a sheet as an
+Excel report inside another Excel report
+and following this tool we need to
+create another export file and include
+that inside our main export file
+so now let's do some code
+the first thing we are going to need is
+a new export file so I will go back to
+my terminal and I'll run the command to
+create a new export file
+and I will keep the name of the file as
+user sheet Explorer
+
+next we need to make some changes or
+modification inside our main export file
+so first thing I'm going to remove all
+the implementation of interfaces
+next I'm just gonna keep the Constructor
+method and I will be clearing all other
+matters
+so we will get rid of all of them
+now we need to implement another
+interface that will allow us to have
+multiple sheets inside our export the
+interface is called with multiple sheets
+let's Implement that
+and this interface has one method which
+we need to override
+so let's copy paste that
+this method expects us to return an
+array so let's define our variable sheet
+which will be an empty array and what
+I'm going to do inside this method is
+I'm going to Loop through each of the
+data which represents a single user and
+I will create a sheet
+so the code will be something like this
+so what I have done is I'm looping
+through each of the data which
+represents a single user and I'm
+appending this sheet inside the array
+and in the end we will return this array
+now let's define a few things inside our
+sheet file
+first I'm going to remove this from
+collection implementation and get rid of
+the collection method
+there are a lot of interfaces and
+concerns provided by this Library so I
+will be using another interface with
+title and this will allow us to define
+the title of our sheet
+so let's Implement that
+and this interface has one method which
+we need to override
+so let's copy paste that and Define it
+but before doing that we need to have
+the Constructor to receive the data so
+let's define the Constructor
+and a property name user
+Also let's go back to our user export
+and instead of passing the ID I will
+pass in the user model so now we need to
+define the title of our sheet and that
+is going to be the username so we are
+going to say regen this user name the
+next thing we need to do is Define
+headings for our sheet so I'm going to
+copy paste this function or method and
+we are also going to implement this
+interface
+so what I've done is I have simply added
+headings based on our order stable next
+we need to define the query method which
+will be executed for each of the user
+and retrieve the orders for the specific
+user
+so let's implement the
+from query interface
+and let's define the query method
+the next thing that I'm going to do is
+Define the map method so we are not
+going to be showing every column
+including the created add and updated ad
+inside our report but instead we just
+want to show the basic information so
+for that let's first implement the
+method with mapping
+the interface Theory and Define the
+method map which is going to return an
+array inside this method I've just kept
+the basic information like the order ID
+status and amount and notes of the order
+there is also one more thing that I
+would like to change so let's go to our
+controller
+and instead of storing I'm gonna
+download the file because we don't want
+to store it on our storage but instead
+downloading to the browser is a quicker
+way to see it
+now let's go to the browser and see our
+report
+now inside the report we can now see
+that we have multiple sheets and each it
+refers to one single user
+and inside we can see all the orders for
+that specific user
+so that was all about the multiple
+sheets
+so now you have learned how you can
+create multiple sheets in a single
+export file in the next video let's take
+a look at the customization of these
+columns

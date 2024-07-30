@@ -1,0 +1,71 @@
+while exporting we can leverage a few
+events in order to add custom Behavior
+to the export there are two ways to use
+these events one way is to implement the
+with events interface and then Define a
+method named register events that will
+return an array of event and inside this
+array the key will be fully qualified
+name or fqn basically the name of the
+event and the value is a callable event
+listener and this listener can either be
+a cloer or an invocable class instance
+all the events that are available can be
+seen on your screen right now and let's
+discuss a little bit about them the
+before export event gets fired before
+the export has started like before
+everything else before writing event is
+fired when the export is completed and
+is about to be stored on a disk or
+downloaded by the user the before sheet
+even is called when a sheet has been
+created but not yet anything is written
+on it the last event is after sheet and
+you will be mostly working inside this
+because because you can do different
+stuff like styling your sheets or making
+adjustments to your sheets this event is
+fire at the last in the sheet creation
+process one problem here is that we
+cannot use a clure for cued export
+because PHP cannot serialize the closure
+and it is mentioned in the documentation
+of LEL Excel so that brings us to the
+second approach which is by using a
+trade call register even listeners along
+with the with event interface so for
+this we are going to implement our with
+event interface but now we will also be
+using a trade on our export class now we
+can Define each even method as a
+separate static method on our export
+class just in case if we have multiple
+exports file and we want to define a
+generic listener for all of them we can
+Define it inside the app service
+provider file and inside the register
+matter of it you might be wondering what
+these events are for actually we can do
+quite a lot of things with these events
+like adding properties to our report
+setting the Creator name or something or
+description setting the orientation or
+we can also style our sheets coming to
+the last part of our video which is
+adding RTL or right to left sheet it is
+quite easy to achieve that inside the
+after sheet method all we need to do is
+grab our sheet and set the Ral to true
+and the way we do that is by using the
+event parameter which is we are
+receiving and calling the sheet on it
+and then the get delegate method and
+then on that we will just set the RDL to
+true the get delegate method will
+returns and underlying PHP spreadsheet
+class and this is how we can achieve the
+RDL support in our exports if you find
+the video helpful please give a thumbs
+up and subscribe to the channel for more
+videos

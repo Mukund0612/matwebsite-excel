@@ -1,0 +1,124 @@
+previously we were using fsat in order
+to download an Excel file however level
+Excel provide us another way of
+downloading the files
+so inside our export file we are going
+to import our concern and here we are
+also going to add use exportable
+and now what we can do is we can remove
+the facade from our controller
+I will comment this one out and instead
+we are going to return the instance of
+our export
+and now we have the method called
+download
+and we can call that method
+and we can pass in multiple arguments
+the first one is the simple one which is
+the name of the file so let's add the
+file name so we are calling the download
+method and we are missing the argument
+here users
+so it will work the same way as before
+the only difference is we now don't have
+to include the X oversad in our
+controller like I mentioned before this
+download method accepts multiple
+parameters or arguments the first one is
+the file name the second one is about
+the writer type so whatever type of file
+we are trying to explore it can be CSV
+XLS depends on the Excel file and the
+third one is the array of headers where
+we can specify the things like content
+type now there is one more way of
+shortening this type of download so
+without using the X office app and for
+that we have an interface which allows
+us to Define these customization like
+the file name the writer type and
+headers inside of our export class so
+for that let's go back to our export
+file and inside our export file we can
+implement the interface called
+responsible
+with this interface we can Define couple
+of things so I'm going to copy from the
+official documentation and we can Define
+the file name writer type and headers
+so the file name is going to be users
+and we must Define file name in order to
+use the responsible interface the other
+properties are optional so let me
+add Excel
+and the content type let's keep that
+and now we can go back to our controller
+and instead of using the download method
+we can simply return our instance of the
+export file
+and that was all about different ways of
+exploring file now when we are working
+with apis or even when we are not
+working with the apis it doesn't have to
+be AB specific we want to store the
+Excel file somewhere it can be on our
+own server or something like S3 storage
+so for this we have two ways of storing
+the file the first one is using the X
+office ad so let's comment this one
+and undo all the changes so we won't be
+using the responsible interface and not
+even the exportable concern and instead
+of the download method we have a meta
+name store
+and we also need to import the Excel
+facade
+so it's going to be Excel slash facade
+and now we can use the meta name store
+and it also takes in multiple parameters
+so the first one is the exportable file
+so that is our user's export the second
+one is the file path or the file name so
+if we are just defining the file name
+and we have not configured or modified
+the default file system inside our file
+systems.php it will be storing the file
+using the local disk which by default
+refers to the storage app folder
+so these two are the required parameters
+the rest are optional the third one is
+about the disk so we can specify
+whichever disk we want to use it can be
+S3 Public Storage whichever we have
+defined in our file system file and the
+fourth one is about the writer type and
+we can pass in some options as a 50
+parameter so which can be like
+visibility of the file or the content
+type now let's try it out first so we'll
+go back to our browser and slash export
+and we can see one which means the file
+has been successfully stored so we can
+go to our file system and inside the
+storage directory inside the app folder
+we can see our users Excel file so now
+the other way of storing the file is by
+using exportable conserve so we can go
+back to our export file and add the use
+exportable and now we can go back to our
+controller and instead of the download
+method we have the store method and
+which takes in the same program as the
+facade method so we can just simply pass
+in the name and let's try it in browser
+hit refresh
+and actually let's first delete this
+file so we know that our method is
+working
+refresh go back and now we can see our
+user Excel file
+so that is about exporting and
+downloading files now let's dive a
+little bit deeper into customizations of
+the sheets and having multiple sheet in
+the Excel file

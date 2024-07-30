@@ -1,0 +1,68 @@
+sometimes we need to manipulate Data
+before exporting like we may want to
+append something or remove something
+from the data
+we may also want to change the order of
+the columns in the Excel sheet
+we can achieve both with two methods
+provided by larval XO for changing the
+order of the columns we have an
+interface which we can Implement called
+with mapping
+this interface required you to define a
+method name map which returns array and
+this array represents a single row of
+data
+let's implement this interface and
+Define the method
+now inside we can Define how we want
+each of our row to be mapped
+now let's go to the browser and see the
+result we are facing an error and that's
+because I'm trying to access a property
+on an array
+so let's fix that and retry it in the
+browser
+and inside the export file we can now
+see that each row has only those
+property that we map through
+here we just have one problem that the
+value of address and phone number column
+are swept so let's fix that and retry
+again
+so that's how Map works in general
+with this method we can also Define how
+multiple rows should be mapped for this
+we can Define array of arrays where each
+internal array is a representation of a
+single row
+so let's define three rows and see the
+output
+we can see that every row is showing
+exactly how we Define them to be every
+second row should have the hyphens for
+phone number and every third row should
+have hyphens for the address
+the other method is called prepare roll
+for this you don't have to implement any
+interface and as you might have guessed
+by the name of it that it is used to
+prepare the rows for export
+this method is called before mapping the
+data to export file even though we can
+manipulate the data inside the map
+method it is better to split each method
+with their own single responsibility
+right now we can see an error and that
+is because I'm calling transform a
+collection method on any array
+so instead of this transform method I
+will be using for each Loop
+let's try now and we can see that we
+have manipulated the name for each row
+now we know how we can generate reports
+and how we can manipulate data so before
+going further ahead let's quickly look
+into how we can store this Excel file on
+our disk and what matters do we have for
+exporting

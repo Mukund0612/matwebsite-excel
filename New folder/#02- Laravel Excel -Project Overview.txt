@@ -1,0 +1,43 @@
+before moving towards exporting data I
+would like to give you a demo of the
+project which I will be using throughout
+this tutorial series to generate reports
+this is the database structure or ERD
+generated using workbench where we will
+be storing the data for different
+restaurants the food they are selling
+and Orders of different users with this
+data we will be able to generate
+different type of reports I've kept the
+scope of this project very small but
+enough for covering all the topics let's
+quickly go through each of the migration
+factories and a cedar to insert the data
+and get started the first migration is
+for the restaurant where I have basic
+videos like the name email and address
+of the restaurant
+then we have the menu items table which
+basically represent an item that is
+offered by a restaurant next we have the
+owners and orders item table where we
+will be holding all the orders placed by
+a user and all the items included in
+that order and the total price that's
+all for the migration and the next thing
+I did was to add all these fillable
+attributes and Define the relation
+inside the model for each table inside
+the factories I have just used fake data
+using the PHP Faker package and finally
+inside the database theater file I'm
+calling these factories to insert the
+data into the database the code has been
+pushed to GitHub you can simply pull
+from this commit and run the command PHP
+Artisan migrate seed just make sure you
+have set the database credential in your
+environment file and this will create
+all the tables and insert fake data in
+demo once that is done it's time for
+some exports

@@ -1,0 +1,54 @@
+whenever we are working with a larger
+application we often have to generate
+reports or simply export data to an
+Excel file or a CSV for this we have
+many packages in larval that we can use
+one amazing package is larval XL in this
+series I will teach you how you can use
+lateral XL to export data and a little
+bit about modifying the Excel sheets in
+the end I will also show you how you can
+read data from an Excel file which has
+multiple sheets and how you can insert
+that data into the database so let's get
+started with the installation first I
+have created a new level project and
+added the database credentials the
+version of variable is 10 which is the
+latest at the moment and the PHP version
+is 8.2
+this code is also pushed to GitHub and
+you can find the link in the description
+below now in order to install the
+laravel Excel package we have some
+requirements one of them is to have
+larval above 5.8 and PHP should be above
+7.2 or 8 depending on the version of
+lateral you are using other than this we
+need to have a few PHP extensions
+enabled for this you can go to your PHP
+ini file and check whether these are
+enabled or not with the requirements out
+of the way we can run the composer
+command to install the package for me
+however I was running into some PHP
+spreadsheet version error and that is
+because some dependencies of the package
+is missing so instead of running this
+simple command of composer I will add an
+argument with all dependencies so once
+the package is installed the service
+provider is automatically discovered as
+mentioned in the documentation but it
+didn't work for me and I had to do it
+manually so let's add the provider and
+the alias in the app.php so the package
+has been installed and now we can run
+vendor published command to have the
+config file which includes all the
+general configuration we want for this
+package age let's run the command
+and with this we can see there is a file
+name xl.php in our projects config
+folder the installation is now complete
+now let's do some exports

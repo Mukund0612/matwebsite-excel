@@ -1,0 +1,279 @@
+all right so we have talked so much
+about the exports it is time we also
+discuss how we can import excels into
+our system using L
+Excel I will try to cover everything
+that will help you understand different
+things while importing so it might be a
+longer than usual video in the
+series so for imports I will be using
+two Excel files the first one is a
+simple Excel file to show you how we can
+import a simple Excel with just one
+sheet and it will become containing list
+of users only so it will be like first
+name email the phone number and password
+and the
+address the other file is a bit more
+complex one as it will include multiple
+sheets where each sheet is going to
+represent a single user and their
+aors and we will see how we can import
+such file with uh multiple sheets and
+header
+role so let's get started first firstly
+we are going to create a new import file
+and for that we need to run the
+following command so let's go into our
+terminal and run the command PHP artison
+make import and the name of our file so
+in our case it is going to be user
+import similar to our export command we
+can also specify the model as a tag to
+this command but we will do it manually
+for now by executing this command if you
+go back to our code you will see there
+is a new directory inside the folder and
+inside the Imports we have our new
+import file by default it is
+implementing to collection interface but
+if we had specified the model then it
+would be implementing the two model
+interface so the first way I'm going to
+show you is by using the two model
+interface so I will clear this one
+up and instead of the two collection I'm
+going to implement the two model
+interface if we had provided the tag
+inside the command then we would have to
+do do this but uh since we haven't
+provideed the model name while creating
+this import file so we will have to do
+it manually and this interface has one
+method named model which we must Define
+this method takes in a parameter of
+array and basically this represents a
+single row of our Excel file which we
+are trying to import and it will return
+a new model instance so here I'm
+defining all the key values and each
+index that I'm using here response to a
+single column inside our Excel file now
+in order to import we can either upload
+Excel file or we can move our file
+inside the public folder and use that
+file to import I will be moving our xfi
+into the public folder and then we will
+create our route from where we can
+trigger this import so let's create a
+route and update our controller to
+import this file inside the web.php I'm
+going to create a new R named
+
+keboard and now let's go to our
+controller and here I'm just going to
+create a new method called
+import inside this import method we just
+need to use the Excel facad and the
+import method to import our Excel file
+one other way would be to create a
+command and execute that from the
+terminal but you can try that on
+yourself anyways now we have the route
+and inside our controller we are using
+Excel facet to import this import method
+takes in multiple parameters the first
+one being the export file instance the
+second being the name of the file and
+the third is an optional one which is
+for the this if we are not specifying
+the dis it is going to use the default
+one which is local there can be a fourth
+parameter which is for specifying the
+reader type in case the reader type is
+not detectable by the file extension so
+we can specify whether it is an Excel
+file or a CSV file or any other sported
+uh extension also I have moved my Excel
+file from the public folder to the
+storage app folder because the local
+disc is uh pointing towards the storage
+app directory so let's give it a try now
+and and see if we can get the data in
+the database I've also added a return
+statement here so that in case of
+success we will see something in the
+browser first let's also go to the
+database and see how many records are
+there inside our database right now and
+then we will see how many records are
+there after the
+import so I will open up workbench and
+we can run this query and see the last
+index is ID or we can do simply count of
+
+all the
+records and now we can see that there is
+only 100 records at the time now we will
+go to our browser and hit the import
+
+route so we can see our return statement
+and now let's go back to our
+database and rerun this query and now we
+can see that five new users has been
+added and if I run this query we can see
+that all of our five new users has been
+added to our database so that is how we
+can add the data from the Excel file
+into our database using the two model
+interface and that is simple way of
+importing an Excel or CSV file there is
+one fix that I have made so what I have
+changed is I have used hash make so our
+password will be encrypted and I have
+rerun our import inside the browser now
+if we go to the database we can now see
+that our password is encrypted now I
+will talk about a few different things
+you can do while Imports the first thing
+I want to talk about is called observes
+now what do you thing will happen if I
+import the same file again so inside our
+browser let's go to import
+again and you can see we are running
+into an SQL error because the email
+column is a unique one inside our
+database schema now in case we are
+importing an Excel file where we could
+have phase duplication of unique columns
+we can use an interface called with
+observes and Define the method unique by
+to overcome this so let's go to our code
+and inside our Excel
+file I'm going to implement a new
+interface call with
+abser and Define the method name uni by
+and here I'm just going to define the
+column name which is going to be unique
+or a primary key and that is the only
+condition we need to Define inside this
+method that the column name either
+should be a primary key or a unique
+column now what is going to happen is
+instead of adding a new row if there is
+an entry of the same email the entire
+row will be
+updated so let's save and go back to our
+browser and I'm going to refresh and you
+can see we can see the region response
+but there will be no entry no new entry
+for the same users instead if you go to
+the updated at column and you can see
+that the time will be updated to the
+current time because this entire row has
+been updated now one more thing we can
+do here is to specify which columns to
+update in case of duplication of data
+for that we have another interface
+called with absur columns and we will
+have to define a method absur columns
+which will return an array of columns
+name to be updated in case of
+duplication so inside of Excel file I'm
+going to implement with absur
+columns and we need to define a method
+name abser columns and I'm only going to
+update the name of the
+user the second thing that I want to
+talk about is uh skipping rope with the
+two model interface implemented
+so in case we want to skip a skip a row
+for some condition we can do that so
+inside our model method I can just
+return return null and it will skip the
+current row so I won't be doing it for
+all let's say if we don't have a name so
+the First Column is empty then I'm going
+to return no I'm not going to add a new
+user so that is one way to skip our
+Excel Row the next thing that I want to
+talk about is called the importable
+strap so just just like the export files
+we had the exportable tra to be used
+inside our export class we can also use
+the importable straight here so we will
+simply do use
+importable and now instead of using the
+Excel facet to import the file we can
+chuse a similar syntax to the export and
+import the file so now the last thing I
+want to talk about in this video is
+called The Heading row so inside the
+Excel you might have noticed that we
+don't have a heading row at the top and
+we are just getting the column values by
+the index is 0 1 2 so what if we had a
+header or heading row at the top now in
+case we have a Excel file like this one
+uh we need to specify that our Excel
+contains the header row so for that we
+need to implement an interface called
+with heading row and now for this let's
+go to our code and what we will have to
+do is inside our Excel file we just need
+to implement bid heading row and now
+instead of 0 one 2 the indexes we can
+specify the uh name of the columns so
+this is how we can use the heading Row
+in our Excel Imports so there is one
+more thing that I would like to talk
+about so in case our heading row is not
+at the top so something like this and
+this is just the adding for the whole
+export or something or just empty row
+and our heading row is not at the first
+level or the top level so what we can do
+is we can specify that uh at which row
+our heading row exists so inside our
+Excel file we just need to define a
+method called heading row and we can
+specify the row number in order to let
+LEL Exel know that this is where our
+heading row is one more thing about the
+heading row is the formatting so by
+default our Excel automatically uh uses
+the helper string slug in order to
+format The Heading key so for example
+let's say instead of phone _ number the
+uh key name is phone and then there is a
+space after that so what larel Excel
+will do is automatically converts the
+key in lorer case and also replace the
+spaces with the underscore in case you
+don't want any formatting uh by default
+then you can just override this and use
+the none for meod now in case you want
+to do some custom formatting prepending
+or appending something to the key you
+can do that as well inside the service
+provider using the extend method
+provided by LEL Excel the last thing to
+talk about the uh heading grow is the
+grouping of the values so let's say
+inside our Excel file each user could
+have multiple addresses and we have
+something like this so for this data to
+be imported we can use another concern
+called with group heading group and what
+is going to do is it's going to return
+return us the values of the same key as
+an
+array so that is a little bit about the
+importing of the Excel files and there
+will be one more video after this where
+I will talk about how we can import
+multiple sheets batch inserts chunks and
+we will see a little bit more so that's
+it for the video and I will see you in
+the next
+one

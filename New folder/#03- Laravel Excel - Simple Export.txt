@@ -1,0 +1,50 @@
+now we have the data in the database for
+exporting reports if we go to the
+lateral Excel documentation we can see a
+quick style link let's follow this one
+and Export our first Excel file
+in order to export we need to First
+create an export file which we can
+generate using a command provided by
+lateral Excel package
+PHP artisan make export and the name of
+the file in our case it is going to be
+user export and then we can specify the
+model if we are going to generate a
+report based on a model
+by specifying the model name we are just
+adding the query to the export file
+which will retrieve all the records for
+the specified model once we run this
+command we can see a new directory
+inside our app folder name exports
+inside we have our export file which
+only has one method name collection
+which retrieves all the records for the
+user model
+now we need to create an endpoint and
+add a very simple logic to download an
+Excel file so I will create the route
+named users.export and I'm going to add
+a closure here instead of the controller
+because right now we have a very simple
+logic later on we will move the logic to
+its own controller so we will be using
+Excel facade provided by the package and
+we will call the download method which
+takes in couple parameters the first one
+is the export file instance which we
+just created using the Artisan command
+and the second one is the name of the
+file with the extension
+so we can specify the extension as Excel
+file or a CSV now let's return this and
+in the browser let's hit this endpoint
+okay so the file is downloaded let's
+open it
+and now we can see all the users that
+are in the Excel file and now we can see
+all the users data in the Excel file
+next let's see at few different ways of
+exporting data and then we will get into
+some customization of the Excel sheet
